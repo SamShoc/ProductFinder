@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProductFinder</string>
+    <string name="title_app">Press a button to either take a picture or enter a barcode manually</string>
+    <string name="text_button">Text</string>
+</resources>
