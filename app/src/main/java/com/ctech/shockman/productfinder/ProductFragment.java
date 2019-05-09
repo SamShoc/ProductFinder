@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+//https://code.tutsplus.com/tutorials/android-sdk-create-a-barcode-reader--mobile-17162
+//https://github.com/SueSmith/android-book-barcode-scanner
+//https://github.com/zxing/zxing/tree/master/android-integration/src/main/java/com/google/zxing/integration/android
+
 public class ProductFragment extends Fragment {
 
     private Button mPicButton;
