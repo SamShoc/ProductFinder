@@ -34,6 +34,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ctech.shockman.productfinder.ProductFragment;
+
 
 public class IntentIntegrator {
     public static final int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
@@ -71,7 +73,7 @@ public class IntentIntegrator {
     private static final int FLAG_NEW_DOC = Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
 
     private final Activity activity;
-    private final Fragment fragment;
+    private final ProductFragment fragment;
 
     private String title;
     private String message;
@@ -94,7 +96,13 @@ public class IntentIntegrator {
      *  {@link #startActivityForResult(Intent, int)} will be called on the {@link Fragment} instead
      *  of an {@link Activity}
      */
+    /*
     public IntentIntegrator(Fragment fragment) {
+        this.activity = fragment.getActivity();
+        this.fragment = fragment;
+        initializeConfiguration();
+    }*/
+    public IntentIntegrator(ProductFragment fragment) {
         this.activity = fragment.getActivity();
         this.fragment = fragment;
         initializeConfiguration();

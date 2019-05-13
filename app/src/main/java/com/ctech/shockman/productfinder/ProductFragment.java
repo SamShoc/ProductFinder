@@ -15,6 +15,7 @@ import com.google.zxing.integration.android.IntentResult;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //https://code.tutsplus.com/tutorials/android-sdk-create-a-barcode-reader--mobile-17162
@@ -25,12 +26,19 @@ public class ProductFragment extends Fragment {
 
     private Button mPicButton;
     private Button mTextButton;
+    private TextView contentTxt;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    private void myClick(View v) {
+        if(v.getId()==R.id.pic_button) {
+            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            scanIntegrator.initiateScan();
+        }
+    }
 
     @Nullable
     @Override
@@ -42,10 +50,7 @@ public class ProductFragment extends Fragment {
         mPicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getId()==R.id.pic_button) {
-                    IntentIntegrator scanIntegrator = new IntentIntegrator();
-                    scanIntegrator.initiateScan();
-                }
+                myClick(v);
             }
         });
 
@@ -57,10 +62,12 @@ public class ProductFragment extends Fragment {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
         if (scanningResult != null) {
-
+            String scanContent = scanningResult.getContents();
+            //String scanFormat = scanningResult.getFormatName();
+            contentTxt.setText(scanContent);
         } else {
-            Toast toast = Toast.makeText(R.string.no_data);
-            toast.show();
+            //Toast toast = Toast.makeText("@String/no_data", Toast.LENGTH_SHORT);
+            //toast.show();
         }
     }
 }
