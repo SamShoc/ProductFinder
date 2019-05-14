@@ -26,7 +26,7 @@ public class ProductFragment extends Fragment {
 
     private Button mPicButton;
     private Button mTextButton;
-    private TextView contentTxt;
+    private TextView mContentText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class ProductFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_product, container, false);
 
         mTextButton = v.findViewById(R.id.text_button);
+        mContentText = v.findViewById(R.id.scan_content);
         mPicButton = v.findViewById(R.id.pic_button);
         mPicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +64,8 @@ public class ProductFragment extends Fragment {
 
         if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
-            //String scanFormat = scanningResult.getFormatName();
-            contentTxt.setText(scanContent);
+            String scanFormat = scanningResult.getFormatName();
+            mContentText.setText(scanContent);
         } else {
             //Toast toast = Toast.makeText("@String/no_data", Toast.LENGTH_SHORT);
             //toast.show();
