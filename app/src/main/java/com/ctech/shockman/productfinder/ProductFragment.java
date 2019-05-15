@@ -1,5 +1,7 @@
 package com.ctech.shockman.productfinder;
 
+import android.app.SearchManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,9 +20,13 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //https://code.tutsplus.com/tutorials/android-sdk-create-a-barcode-reader--mobile-17162
 //https://github.com/SueSmith/android-book-barcode-scanner
 //https://github.com/zxing/zxing/tree/master/android-integration/src/main/java/com/google/zxing/integration/android
+//https://stackoverflow.com/questions/45385813/get-google-search-results-and-show-in-android-app
 
 public class ProductFragment extends Fragment {
 
@@ -61,14 +67,26 @@ public class ProductFragment extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        String scanContent = scanningResult.getContents();
+        mContentText.setText(scanContent);
+        try{
+            intent = new Intent(Intent.ACTION_WEB_SEARCH);
+            String term = mContentText.getText().toString();
+            intent.putExtra(SearchManager.QUERY, term);
+            startActivity(intent);
+        } catch (Exception e) {
 
-        if (scanningResult != null) {
+        }
+        //IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+
+        /*if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
-            String scanFormat = scanningResult.getFormatName();
+            //String scanFormat = scanningResult.getFormatName();
             mContentText.setText(scanContent);
         } else {
             //Toast toast = Toast.makeText("@String/no_data", Toast.LENGTH_SHORT);
             //toast.show();
         }
+        */
     }
 }
