@@ -55,6 +55,16 @@ public class ProductFragment extends Fragment {
         mEnterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = mTextBox.getText().toString();
+                mContentText.setText(text);
+                try{
+                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    String term = mContentText.getText().toString();
+                    intent.putExtra(SearchManager.QUERY, term);
+                    startActivity(intent);
+                } catch (Exception e) {
+
+                }
 
             }
         });
