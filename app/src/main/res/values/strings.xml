@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ProductFinder</string>
     <string name="title_app">Press a button to either take a picture or enter a barcode manually</string>
-    <string name="text_button">Text</string>
+    <string name="text_button">Enter the barcode manually here</string>
     <style name="no_data">No scan data received</style>
+    <style name="enter">Enter</style>
 </resources>
