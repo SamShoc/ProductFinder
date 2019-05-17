@@ -17,6 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //https://code.tutsplus.com/tutorials/android-sdk-create-a-barcode-reader--mobile-17162
 //https://github.com/SueSmith/android-book-barcode-scanner
@@ -83,15 +84,20 @@ public class ProductFragment extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        String scanContent = scanningResult.getContents();
-        mContentText.setText(scanContent);
-        try{
-            intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            String term = mContentText.getText().toString();
-            intent.putExtra(SearchManager.QUERY, term);
-            startActivity(intent);
-        } catch (Exception e) {
+        if (scanningResult != null) {
+            String scanContent = scanningResult.getContents();
+            mContentText.setText(scanContent);
+            try {
+                intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                String term = mContentText.getText().toString();
+                intent.putExtra(SearchManager.QUERY, term);
+                startActivity(intent);
+            } catch (Exception e) {
 
+            }
+        } else {
+            Toast toast = Toast.makeText("@String/no_data").Toast.LENGTH_SHORT;
+            toast.show();
         }
         //IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
