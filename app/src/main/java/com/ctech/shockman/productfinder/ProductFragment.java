@@ -98,6 +98,7 @@ public class ProductFragment extends Fragment {
         } else {
             Toast toast = Toast.makeText("@String/no_data").Toast.LENGTH_SHORT;
             toast.show();
+            //its broken
         }
         //IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
